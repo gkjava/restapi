@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
+@XmlRootElement(name = "message")
+@XmlType (propOrder={"id", "message", "author", "created"})
 public class Message implements Serializable {
 
 	/**

@@ -18,7 +18,7 @@ public class MessagesResource {
 	 * @return
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)    
 	public List<Message> getMessages() {
 	MessagesService messagesService = new MessagesServiceImpl();
 		List<Message> messageList = messagesService.getAllMessages();
