@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.gkjava.rest.messagner.model.Message;
 import org.gkjava.rest.messagner.service.MessagesService;
-import org.gkjava.rest.messagner.service.MessagesServiceImpl;
+import org.gkjava.rest.messagner.service.impl.MessagesServiceImpl;
 
 @Path("messages")
 public class MessagesResource {
