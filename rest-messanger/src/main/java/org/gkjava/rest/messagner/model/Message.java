@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "message")
+@XmlRootElement
 @XmlType (propOrder={"id", "message", "author", "created"})
 public class Message implements Serializable {
 
@@ -24,6 +24,14 @@ public class Message implements Serializable {
 		this.id = id;
 		this.message = message;
 		this.created = new Date();
+		this.author = author;
+	}
+
+	public Message(long id, String message, Date created, String author) {
+		super();
+		this.id = id;
+		this.message = message;
+		this.created = created;
 		this.author = author;
 	}
 

@@ -9,7 +9,7 @@ public interface MessagesService {
 
 	List<Message> getAllMessages();
 
-	Message getMessage(long messageId);
+	List<Message> getMessage(long messageId);
 	
 	Message addMessage(Message message);
 	
