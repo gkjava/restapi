@@ -79,7 +79,7 @@ public class MessageDaoImpl {
 				String message = dbObject.getString("message");
 				String author = dbObject.getString("author");
 				// TODO: Need to fix
-				Date created = null; /* new Date(dbObject.getString("created")); */
+				Date created = dbObject.getDate("created"); 
 				messages.put(id, new Message(id, message, created, author));
 			}
 		}
@@ -87,13 +87,17 @@ public class MessageDaoImpl {
 	}
 	
 	
+	/**
+	 * 
+	 * @param message
+	 * @return
+	 */
 	public WriteResult addMessages(Message message) {
 		Map<Long, Message> messages = new HashMap<Long, Message>();
 		MongoDBConnection mongoDBConnection = null;
 		try {
 			mongoDBConnection = new MongoDBConnection();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
