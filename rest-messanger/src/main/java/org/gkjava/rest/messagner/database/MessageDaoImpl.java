@@ -1,6 +1,7 @@
 package org.gkjava.rest.messagner.database;
 
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,8 +80,7 @@ public class MessageDaoImpl {
 				String message = dbObject.getString("message");
 				String author = dbObject.getString("author");
 				// TODO: Need to fix
-				Date created = dbObject.getDate("created"); 
-				messages.put(id, new Message(id, message, created, author));
+				messages.put(id, new Message(id, message, null, author));
 			}
 		}
 		return messages;
