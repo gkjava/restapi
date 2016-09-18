@@ -18,27 +18,25 @@ import com.mongodb.WriteResult;
 import com.mongodb.util.JSON;
 
 public class MessageDaoImpl {
-	
+
 	private static final String collectionName = "Messages";
-	
+
 	private static final String dbName = "social-network";
 
+	MongoDBConnection mongoDBConnection = null;
 	/**
 	 * This method is used to get all the message's from the mongo db database
+	 * 
 	 * @return
 	 * @throws UnknownHostException
 	 */
 	public Map<Long, Message> getMessages() {
 		Map<Long, Message> messages = new HashMap<Long, Message>();
-		MongoDBConnection mongoDBConnection = null;
-		try {
-			mongoDBConnection = new MongoDBConnection();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DBCursor cursor = mongoDBConnection.findDocument(dbName,
-				collectionName);
+
+		mongoDBConnection = MongoDBConnectionUtil.getConnection();
+		DBCursor cursor = mongoDBConnection
+				.findDocument(dbName, collectionName);
+		
 		while (cursor.hasNext()) {
 			BasicDBObject dbObject = (BasicDBObject) cursor.next();
 			System.out.println(dbObject);
@@ -53,25 +51,20 @@ public class MessageDaoImpl {
 		}
 		return messages;
 	}
-	
+
 	/**
 	 * This method is used to get all the message's from the mongo db database
+	 * 
 	 * @return
 	 * @throws UnknownHostException
 	 */
 	public Map<Long, Message> getMessages(long messageId) {
 		Map<Long, Message> messages = new HashMap<Long, Message>();
-		MongoDBConnection mongoDBConnection = null;
-		try {
-			mongoDBConnection = new MongoDBConnection();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		BasicDBObject basicDBObject = new BasicDBObject();
 		basicDBObject.put("id", messageId);
 		DBCursor cursor = mongoDBConnection.findDocument(dbName,
 				collectionName, basicDBObject);
+		mongoDBConnection = MongoDBConnectionUtil.getConnection();
 		while (cursor.hasNext()) {
 			BasicDBObject dbObject = (BasicDBObject) cursor.next();
 			System.out.println(dbObject);
@@ -85,8 +78,7 @@ public class MessageDaoImpl {
 		}
 		return messages;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param message
@@ -94,22 +86,26 @@ public class MessageDaoImpl {
 	 */
 	public WriteResult addMessages(Message message) {
 		Map<Long, Message> messages = new HashMap<Long, Message>();
-		MongoDBConnection mongoDBConnection = null;
-		try {
-			mongoDBConnection = new MongoDBConnection();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		
 		DBObject basicDBObject = new BasicDBObject();
 		basicDBObject = MongoDbBasicConverters.fromAnyObjectToDBObject(message);
 		basicDBObject.put("Messages", message);
-		return mongoDBConnection.saveDocument(dbName, collectionName,(BasicDBObject) basicDBObject);
-		
+		mongoDBConnection = MongoDBConnectionUtil.getConnection();
+		return mongoDBConnection.saveDocument(dbName, collectionName,
+				(BasicDBObject) basicDBObject);
+
 	}
-	
-	public static void main(String[] args) {
-		MessageDaoImpl dao = new MessageDaoImpl();
-		dao.addMessages(new Message(5L, "Sample", "Gaurav"));
+
+	public WriteResult updateMessage(long messageId, Message message) {
+		BasicDBObject searchQuery = new BasicDBObject();
+		searchQuery.put("messageId", messageId);
+
+		DBObject basicDBObject = new BasicDBObject();
+		basicDBObject = MongoDbBasicConverters.fromAnyObjectToDBObject(message);
+		basicDBObject.put("Messages", message);
+
+		mongoDBConnection = MongoDBConnectionUtil.getConnection();
+		return mongoDBConnection.updateDocument(dbName, "Messages",
+				basicDBObject, searchQuery);
 	}
+
 }

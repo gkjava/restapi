@@ -9,6 +9,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.WriteResult;
 
@@ -92,7 +93,7 @@ public class MongoDBConnection {
 	 * @return
 	 */
 	public WriteResult updateDocument(String dbName, String collectionName,
-			BasicDBObject newBasicDBObject, BasicDBObject searchQuery) {
+			DBObject newBasicDBObject, DBObject searchQuery) {
 		DB db = mongoClient.getDB(dbName);
 		DBCollection dbCollection = db.getCollectionFromString(collectionName);
 		BasicDBObject updateObj = new BasicDBObject();

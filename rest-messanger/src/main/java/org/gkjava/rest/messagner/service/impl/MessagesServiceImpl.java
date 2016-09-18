@@ -1,5 +1,6 @@
 package org.gkjava.rest.messagner.service.impl;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import org.gkjava.rest.messagner.service.MessagesService;
 
 public class MessagesServiceImpl implements MessagesService {
 	
-	MessageDaoImpl messageDao = new MessageDaoImpl();
+	MessageDaoImpl messageDao =new MessageDaoImpl();
 	
 	@Override
 	public List<Message> getAllMessages() {
@@ -39,9 +40,10 @@ public class MessagesServiceImpl implements MessagesService {
 
 	@Override
 	public Message updateMessage(Message message) {
-		/*if (message.getId() <= 0) {
+	/*	if (message.getId() <= 0) {
 			return null;
 		}
+		messageDao.u
 		return messages.put(message.getId(), message);*/
 		return null;
 	}
