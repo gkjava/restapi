@@ -151,6 +151,17 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.6.11</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.reflections/reflections-maven -->
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections-maven</artifactId>
+			<version>0.9.9-RC2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<jersey.version>2.23.2</jersey.version>

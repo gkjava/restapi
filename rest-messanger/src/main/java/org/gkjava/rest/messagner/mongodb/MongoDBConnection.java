@@ -140,5 +140,6 @@ public class MongoDBConnection {
 		DB db = mongoClient.getDB(dbName);
 		DBCollection dbCollection = db.getCollectionFromString(collectionName);
 		return dbCollection.remove(searchQuery);
+		
 	}
 }
