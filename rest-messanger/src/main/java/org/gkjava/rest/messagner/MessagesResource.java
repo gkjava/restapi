@@ -16,10 +16,7 @@ import org.gkjava.rest.messagner.service.impl.MessagesServiceImpl;
 
 @Path("/messages")
 public class MessagesResource {
-
-	/**
-	 * @return
-	 */
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {

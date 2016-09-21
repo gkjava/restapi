@@ -11,6 +11,7 @@ import org.gkjava.rest.messagner.model.Message;
 import org.gkjava.rest.messagner.model.Profile;
 import org.gkjava.rest.messagner.mongodb.MongoDBConnection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -24,6 +25,7 @@ public class MessageDaoImpl {
 	private static final String dbName = "social-network";
 
 	MongoDBConnection mongoDBConnection = null;
+
 	/**
 	 * This method is used to get all the message's from the mongo db database
 	 * 
@@ -36,7 +38,7 @@ public class MessageDaoImpl {
 		mongoDBConnection = MongoDBConnectionUtil.getConnection();
 		DBCursor cursor = mongoDBConnection
 				.findDocument(dbName, collectionName);
-		
+
 		while (cursor.hasNext()) {
 			BasicDBObject dbObject = (BasicDBObject) cursor.next();
 			System.out.println(dbObject);
@@ -78,7 +80,6 @@ public class MessageDaoImpl {
 		}
 		return messages;
 	}
-
 	/**
 	 * 
 	 * @param message

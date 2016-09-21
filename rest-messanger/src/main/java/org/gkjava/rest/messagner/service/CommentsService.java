@@ -13,7 +13,7 @@ public interface CommentsService {
 	 * @return {@link Comment}
 	 */
 	List<Comment> getAllComments();
-
+	
 	/**
 	 * This method is used to get the specific comment on post
 	 * @param commentId
