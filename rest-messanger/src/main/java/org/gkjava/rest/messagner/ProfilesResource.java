@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -29,6 +30,15 @@ public class ProfilesResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{profileId}")
 	public List<Profile> getProfiles(@PathParam("profileId") long profileId) {
+		ProfilesService profilesService = new ProfilesServiceImpl();
+		List<Profile> profileList = profilesService.getProfile(profileId);
+		return profileList;
+	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{profileId}")
+	public List<Profile> putProfiles(@PathParam("profileId") long profileId, Profile profile) {
 		ProfilesService profilesService = new ProfilesServiceImpl();
 		List<Profile> profileList = profilesService.getProfile(profileId);
 		return profileList;

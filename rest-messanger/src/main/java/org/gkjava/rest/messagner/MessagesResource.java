@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,7 +17,10 @@ import org.gkjava.rest.messagner.service.impl.MessagesServiceImpl;
 
 @Path("/messages")
 public class MessagesResource {
-	
+
+	/**
+	 * @return
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages() {
@@ -29,6 +33,15 @@ public class MessagesResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{messageId}")
 	public List<Message> getMessages(@PathParam("messageId") long messageId) {
+		MessagesService messagesService = new MessagesServiceImpl();
+		List<Message> messageList = messagesService.getMessage(messageId);
+		return messageList;
+	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{messageId}")
+	public List<Message> getMessages(@PathParam("messageId") long messageId, Message message) {
 		MessagesService messagesService = new MessagesServiceImpl();
 		List<Message> messageList = messagesService.getMessage(messageId);
 		return messageList;
